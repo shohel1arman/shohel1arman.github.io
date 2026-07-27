@@ -262,7 +262,6 @@ h2 {
 }
 .about__photo img {
   border: 2.5px solid var(--ink);
-  filter: grayscale(1) contrast(1.05);
   box-shadow: 10px 10px 0 var(--ink);
 }
 .about__photo figcaption { margin-top: 18px; font-size: .76rem; color: var(--grey-3); }
@@ -284,22 +283,27 @@ h2 {
 .areas span:hover { background: var(--ink); color: var(--paper); }
 
 .projects {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 2px solid var(--ink); border-left: 2px solid var(--ink);
 }
 .project {
   border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
-  padding: 30px; position: relative; overflow: hidden;
+  padding: 24px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
   transition: background .25s ease;
 }
 .project:hover, .project:focus-visible { background: var(--grey-1); }
 .project h3 {
-  font-weight: 700; font-size: 1.25rem; margin-bottom: 12px;
+  font-weight: 700; font-size: 1.12rem; line-height: 1.3; margin-bottom: 10px;
 }
-.project p { font-size: .95rem; margin-bottom: 18px; }
-.project__link { font-size: .78rem; color: var(--grey-3); text-decoration: none; }
+.project p { font-size: .9rem; margin-bottom: 16px; }
+.project__link {
+  font-size: .74rem; color: var(--grey-3); text-decoration: none;
+  margin-top: auto;
+}
 a.project__link:hover { color: var(--ink); text-decoration: underline; }
-@media (max-width: 700px) { .projects { grid-template-columns: 1fr; } }
+@media (max-width: 1020px) { .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .projects { grid-template-columns: 1fr; } }
 
 .about__subhead {
   font-weight: 700; font-size: 1.05rem; margin-top: 30px;
@@ -450,7 +454,7 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
 [data-theme="color"] .areas span:hover { background: var(--acc); color: var(--paper); border-color: var(--acc); }
 [data-theme="color"] .btn:hover { background: var(--acc); color: var(--paper); border-color: var(--acc); }
 [data-theme="color"] .timeline__item:hover::before { background: var(--acc); border-color: var(--acc); }
-[data-theme="color"] .about__photo img { filter: none; box-shadow: 10px 10px 0 var(--acc); }
+[data-theme="color"] .about__photo img { box-shadow: 10px 10px 0 var(--acc); }
 [data-theme="color"] .project h3 { color: var(--acc-deep); }
 [data-theme="color"] a.project__link:hover { color: var(--acc); }
 [data-theme="color"] .contact { background: var(--acc-deep); }
