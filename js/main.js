@@ -4,6 +4,35 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- theme toggle ---------- */
+  var rootEl = document.documentElement;
+  var themeBtn = document.getElementById("themeToggle");
+  function storedTheme() {
+    try { return localStorage.getItem("theme"); } catch (e) { return null; }
+  }
+  function storeTheme(t) {
+    try { localStorage.setItem("theme", t); } catch (e) {}
+  }
+  function syncThemeLabel() {
+    if (!themeBtn) return;
+    var colored = rootEl.getAttribute("data-theme") === "color";
+    themeBtn.setAttribute("aria-label", colored ? "Switch to ink theme" : "Switch to colour theme");
+  }
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var colored = rootEl.getAttribute("data-theme") === "color";
+      if (colored) {
+        rootEl.removeAttribute("data-theme");
+        storeTheme("ink");
+      } else {
+        rootEl.setAttribute("data-theme", "color");
+        storeTheme("color");
+      }
+      syncThemeLabel();
+    });
+    syncThemeLabel();
+  }
+
   /* ---------- footer year ---------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();

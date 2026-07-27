@@ -9,6 +9,11 @@
   --grey-1: #f4f4f4;
   --grey-2: #e4e4e4;
   --grey-3: #6f6f6f;
+  --navbg: rgba(255,255,255,.92);
+  --acc: var(--ink);
+  --acc-deep: var(--ink);
+  --gold: var(--ink);
+  --red: var(--ink);
   --display: "Archivo", system-ui, sans-serif;
   --mono: "Space Mono", ui-monospace, monospace;
   --maxw: 1120px;
@@ -19,6 +24,9 @@
 
 html { scroll-behavior: smooth; }
 
+body, .nav, .contact, .footer, .campus__scene {
+  transition: background-color .45s ease, color .45s ease, border-color .45s ease;
+}
 body {
   font-family: var(--display);
   background: var(--paper);
@@ -59,7 +67,7 @@ a { color: inherit; }
   position: fixed; top: 3px; left: 0; right: 0; z-index: 50;
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px var(--pad);
-  background: rgba(255,255,255,.92);
+  background: var(--navbg);
   backdrop-filter: blur(6px);
   border-bottom: 1.5px solid var(--ink);
 }
@@ -85,6 +93,19 @@ a { color: inherit; }
 .nav__cta { border: 1.5px solid var(--ink); padding: 4px 12px !important; }
 .nav__cta:hover { background: var(--ink); color: var(--paper); }
 .nav__cta::after { display: none; }
+
+.nav__right { display: flex; align-items: center; gap: 22px; }
+.theme-toggle {
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--ink); background: transparent; color: var(--ink);
+  cursor: pointer; transition: background .2s ease, color .2s ease;
+}
+.theme-toggle:hover { background: var(--ink); color: var(--paper); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.icon-pencil { display: none; }
+[data-theme="color"] .icon-pencil { display: block; }
+[data-theme="color"] .icon-drop { display: none; }
 
 .nav__burger { display: none; background: none; border: none; cursor: pointer; }
 .nav__burger span {
@@ -202,8 +223,12 @@ h2 {
 .bldg > * { transition: transform .3s ease; }
 .bldg:hover > *:not(.bldg__label),
 .bldg:focus-visible > *:not(.bldg__label) { transform: translateY(-7px); }
+#citysvg [stroke="#111"] { stroke: var(--ink); }
+#citysvg [fill="#fff"] { fill: var(--paper); }
+#citysvg [fill="#111"] { fill: var(--ink); }
+#citysvg pattern line { stroke: var(--ink); }
 .bldg .win { transition: fill .25s ease; }
-.bldg:hover .win, .bldg:focus-visible .win { fill: var(--ink); }
+#citysvg .bldg:hover .win, #citysvg .bldg:focus-visible .win { fill: var(--ink); }
 .bldg__label { opacity: 0; transition: opacity .25s ease, transform .3s ease; }
 .bldg:hover .bldg__label, .bldg:focus-visible .bldg__label { opacity: 1; }
 .labeltext {
@@ -276,6 +301,30 @@ h2 {
 a.project__link:hover { color: var(--ink); text-decoration: underline; }
 @media (max-width: 700px) { .projects { grid-template-columns: 1fr; } }
 
+.about__subhead {
+  font-weight: 700; font-size: 1.05rem; margin-top: 30px;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+
+.pubs { margin-top: 56px; }
+.pubs__head {
+  font-weight: 700; font-size: 1.25rem; margin-bottom: 18px;
+  text-transform: uppercase; letter-spacing: .02em;
+}
+.pubs__list { list-style: none; counter-reset: pub; border-top: 2px solid var(--ink); }
+.pubs__list li {
+  counter-increment: pub;
+  display: grid; grid-template-columns: 44px 1fr; gap: 14px;
+  border-bottom: 1.5px solid var(--grey-2);
+  padding: 16px 0; align-items: baseline;
+}
+.pubs__list li::before {
+  content: "[" counter(pub) "]";
+  font-family: var(--mono); font-size: .8rem; color: var(--grey-3);
+}
+.pubs__title { display: block; font-weight: 700; font-size: .98rem; }
+.pubs__meta { display: block; font-size: .72rem; color: var(--grey-3); margin-top: 4px; }
+
 .research__cta { margin-top: 40px; }
 .btn {
   display: inline-block; font-family: var(--mono); font-size: .88rem;
@@ -329,6 +378,9 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
 }
 .contact h2 { color: var(--paper); margin-bottom: 14px; }
 .contact__sub { color: var(--grey-2); max-width: 46ch; margin: 0 auto 40px; }
+.contact__mails {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
 .contact__mail {
   display: inline-block;
   font-family: var(--mono); font-weight: 700;
@@ -338,6 +390,10 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
   transition: background .2s ease, color .2s ease;
 }
 .contact__mail:hover { background: var(--paper); color: var(--ink); }
+.contact__mail--alt {
+  font-size: clamp(.9rem, 2.4vw, 1.15rem);
+  padding: 11px 22px; border-width: 1.5px; font-weight: 400;
+}
 .contact__links { display: flex; justify-content: center; gap: 26px; margin-top: 36px; }
 .contact__links a { color: var(--grey-2); text-decoration: none; font-size: .85rem; }
 .contact__links a:hover { color: var(--paper); text-decoration: underline; }
@@ -365,3 +421,48 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .bldg > * { transition: none; }
 }
+
+
+/* ==========================================================
+   Colour theme — warm ivory, espresso ink, bottle green,
+   marigold, and a touch of rickshaw red.
+   ========================================================== */
+:root[data-theme="color"] {
+  --ink: #2e2013;
+  --paper: #f6eede;
+  --grey-1: #ece0c8;
+  --grey-2: #dbc9a8;
+  --grey-3: #7d6b52;
+  --navbg: rgba(246, 238, 222, .92);
+  --acc: #1e5b45;
+  --acc-deep: #143d2e;
+  --gold: #dfa31f;
+  --red: #b5402a;
+}
+
+[data-theme="color"] .eyebrow { color: var(--acc); }
+[data-theme="color"] .progress span { background: var(--acc); }
+[data-theme="color"] .nav__links a::after { background: var(--acc); }
+[data-theme="color"] .nav__cta { border-color: var(--acc); color: var(--acc); }
+[data-theme="color"] .nav__cta:hover { background: var(--acc); color: var(--paper); }
+[data-theme="color"] .hero__line--outline { -webkit-text-stroke-color: var(--acc); }
+[data-theme="color"] .hero__facts b { color: var(--acc); }
+[data-theme="color"] .areas span:hover { background: var(--acc); color: var(--paper); border-color: var(--acc); }
+[data-theme="color"] .btn:hover { background: var(--acc); color: var(--paper); border-color: var(--acc); }
+[data-theme="color"] .timeline__item:hover::before { background: var(--acc); border-color: var(--acc); }
+[data-theme="color"] .about__photo img { filter: none; box-shadow: 10px 10px 0 var(--acc); }
+[data-theme="color"] .project h3 { color: var(--acc-deep); }
+[data-theme="color"] a.project__link:hover { color: var(--acc); }
+[data-theme="color"] .contact { background: var(--acc-deep); }
+[data-theme="color"] .footer { background: var(--acc-deep); border-top-color: var(--acc); color: var(--grey-2); }
+[data-theme="color"] .contact__office { color: var(--grey-2); }
+
+/* the campus drawing, warmed up */
+[data-theme="color"] #citysvg .sun { fill: var(--gold); }
+[data-theme="color"] #citysvg .sunrays line { stroke: var(--gold); }
+[data-theme="color"] #citysvg pattern line { stroke: var(--acc); }
+[data-theme="color"] #citysvg .rickshaw path { stroke: var(--red); }
+[data-theme="color"] #citysvg .bldg:hover .win,
+[data-theme="color"] #citysvg .bldg:focus-visible .win { fill: var(--gold); }
+[data-theme="color"] #citysvg .bldg__label rect { fill: var(--acc-deep); }
+[data-theme="color"] .labeltext { fill: var(--paper); }
