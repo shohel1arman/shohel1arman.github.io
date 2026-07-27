@@ -1,0 +1,94 @@
+/* Md. Shohel Arman — portfolio interactions */
+(function () {
+  "use strict";
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- footer year ---------- */
+  var yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- campus buildings: click / keyboard navigation ---------- */
+  document.querySelectorAll(".bldg").forEach(function (b) {
+    function go() {
+      var target = document.querySelector(b.getAttribute("data-target"));
+      if (target) target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+    }
+    b.addEventListener("click", go);
+    b.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        go();
+      }
+    });
+  });
+
+  /* ---------- scroll progress bar ---------- */
+  var bar = document.getElementById("progressBar");
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    if (bar) bar.style.width = p + "%";
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- reveal on scroll ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            en.target.classList.add("in");
+            io.unobserve(en.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* ---------- custom cursor (desktop only) ---------- */
+  var cursor = document.getElementById("cursor");
+  var fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  if (cursor && fine && !reduceMotion) {
+    document.addEventListener("mousemove", function (e) {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+    var growTargets = "a, button, .bldg, .project";
+    document.addEventListener("mouseover", function (e) {
+      if (e.target.closest(growTargets)) cursor.classList.add("is-big");
+    });
+    document.addEventListener("mouseout", function (e) {
+      if (e.target.closest(growTargets)) cursor.classList.remove("is-big");
+    });
+  } else if (cursor) {
+    cursor.style.display = "none";
+  }
+
+  /* ---------- mobile menu ---------- */
+  var burger = document.getElementById("burger");
+  var menu = document.getElementById("mobileMenu");
+  if (burger && menu) {
+    burger.addEventListener("click", function () {
+      var open = menu.classList.toggle("is-open");
+      burger.classList.toggle("is-open", open);
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.style.overflow = open ? "hidden" : "";
+    });
+    menu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        menu.classList.remove("is-open");
+        burger.classList.remove("is-open");
+        burger.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      });
+    });
+  }
+})();
