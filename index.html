@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
   <script>try{if(localStorage.getItem("theme")==="color")document.documentElement.setAttribute("data-theme","color")}catch(e){}</script>
 </head>
 <body>
@@ -76,9 +76,9 @@
           <strong>Washington University of Science &amp; Technology, USA</strong>.
         </p>
         <div class="hero__facts mono">
-          <div><b>8+</b><span>years teaching</span></div>
-          <div><b>25</b><span>publications</span></div>
-          <div><b>310+</b><span>citations</span></div>
+          <div><b class="count" data-count="8" data-suffix="+">8+</b><span>years teaching</span></div>
+          <div><b class="count" data-count="25" data-suffix="">25</b><span>publications</span></div>
+          <div><b class="count" data-count="310" data-suffix="+">310+</b><span>citations</span></div>
         </div>
       </div>
       <a class="hero__down mono" href="#campus">↓ explore the campus</a>
@@ -480,22 +480,42 @@
         <a class="contact__mail contact__mail--alt" href="mailto:arman.swe@diu.edu.bd">arman.swe@diu.edu.bd</a>
       </div>
       <div class="contact__links mono">
-        <a href="https://github.com/shohel1arman" target="_blank" rel="noopener">github</a>
-        <a href="https://www.linkedin.com/in/md-shohel-arman-shuvo1/" target="_blank" rel="noopener">linkedin</a>
-        <a href="https://scholar.google.com/citations?user=D7YhgbwAAAAJ" target="_blank" rel="noopener">scholar</a>
-        <a href="https://www.researchgate.net/profile/Md-Arman-3" target="_blank" rel="noopener">researchgate</a>
-        <a href="https://faculty.daffodilvarsity.edu.bd/profile/swe/arman.html" target="_blank" rel="noopener">diu faculty</a>
+        <a href="https://github.com/shohel1arman" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.26 5.68.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          github
+        </a>
+        <a href="https://www.linkedin.com/in/md-shohel-arman-shuvo1/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          linkedin
+        </a>
+        <a href="https://scholar.google.com/citations?user=D7YhgbwAAAAJ" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3 1 9l11 6 8-4.36V17h2V9L12 3zM5 13.18V17c0 1.94 3.13 3.5 7 3.5s7-1.56 7-3.5v-3.82l-7 3.82-7-3.82z"/></svg>
+          scholar
+        </a>
+        <a href="https://www.researchgate.net/profile/Md-Arman-3" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3h5M10.5 3v5.2L5 17.2A2.3 2.3 0 0 0 7 20.5h10a2.3 2.3 0 0 0 2-3.3L13.5 8.2V3"/><path d="M8 14.5h8"/></svg>
+          researchgate
+        </a>
+        <a href="https://faculty.daffodilvarsity.edu.bd/profile/swe/arman.html" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 9.5h16M12 3 3.5 8.5h17L12 3zM6.5 9.5V21M11 9.5V21M15.5 9.5V21M20 9.5V21"/></svg>
+          diu faculty
+        </a>
       </div>
       <p class="contact__office mono">Department of Software Engineering · Daffodil International University · Dhaka, Bangladesh</p>
     </section>
 
   </main>
 
+  <button class="scrolltop" id="scrollTop" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
   <footer class="footer mono">
     <span>© <span id="year"></span> Md. Shohel Arman</span>
-    <span>hand-drawn in black &amp; white · hosted on GitHub Pages</span>
+    <a class="footer__top" href="#top">back to top ↑</a>
+    <span>hand-drawn · hosted on GitHub Pages</span>
   </footer>
 
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>

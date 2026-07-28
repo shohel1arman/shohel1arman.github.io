@@ -38,6 +38,10 @@ body {
 .mono { font-family: var(--mono); }
 
 img { max-width: 100%; display: block; }
+::selection { background: var(--ink); color: var(--paper); }
+a:focus-visible, button:focus-visible {
+  outline: 2.5px solid var(--ink); outline-offset: 3px;
+}
 a { color: inherit; }
 
 /* ---------- scroll progress ---------- */
@@ -89,7 +93,8 @@ a { color: inherit; }
   transform: scaleX(0); transform-origin: left;
   transition: transform .25s ease;
 }
-.nav__links a:hover::after, .nav__links a:focus-visible::after { transform: scaleX(1); }
+.nav__links a:hover::after, .nav__links a:focus-visible::after,
+.nav__links a.active::after { transform: scaleX(1); }
 .nav__cta { border: 1.5px solid var(--ink); padding: 4px 12px !important; }
 .nav__cta:hover { background: var(--ink); color: var(--paper); }
 .nav__cta::after { display: none; }
@@ -160,7 +165,7 @@ a { color: inherit; }
 .hero__role { font-size: 1.08rem; max-width: 56ch; }
 .hero__facts { display: flex; gap: 30px; justify-content: flex-end; }
 .hero__facts div { text-align: right; }
-.hero__facts b { display: block; font-size: 1.7rem; font-weight: 700; }
+.hero__facts b { display: block; font-size: 1.7rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .hero__facts span { font-size: .72rem; color: var(--grey-3); }
 .hero__down {
   position: absolute; bottom: 26px; left: var(--pad);
@@ -416,10 +421,36 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
   font-size: clamp(.9rem, 2.4vw, 1.15rem);
   padding: 11px 22px; border-width: 1.5px; font-weight: 400;
 }
-.contact__links { display: flex; justify-content: center; gap: 26px; margin-top: 36px; }
-.contact__links a { color: var(--grey-2); text-decoration: none; font-size: .85rem; }
-.contact__links a:hover { color: var(--paper); text-decoration: underline; }
+.contact__links {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 12px; margin-top: 30px;
+}
+.contact__links a {
+  display: inline-flex; align-items: center; gap: 9px;
+  border: 1.5px solid var(--grey-3); padding: 9px 16px;
+  color: var(--grey-2); text-decoration: none; font-size: .8rem;
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.contact__links a svg { width: 16px; height: 16px; flex: none; }
+.contact__links a:hover, .contact__links a:focus-visible {
+  border-color: var(--paper); color: var(--paper); background: rgba(255,255,255,.07);
+}
 .contact__office { margin-top: 44px; font-size: .74rem; color: var(--grey-3); }
+
+/* ---------- scroll to top ---------- */
+.scrolltop {
+  position: fixed; right: 20px; bottom: 20px; z-index: 55;
+  width: 46px; height: 46px;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--ink); background: var(--paper); color: var(--ink);
+  cursor: pointer;
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity .3s ease, transform .3s ease, visibility .3s ease,
+              background .2s ease, color .2s ease;
+}
+.scrolltop.show { opacity: 1; visibility: visible; transform: none; }
+.scrolltop:hover { background: var(--ink); color: var(--paper); }
+.scrolltop svg { width: 20px; height: 20px; }
 
 /* ---------- footer ---------- */
 .footer {
@@ -430,6 +461,8 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
   background: var(--ink); color: var(--grey-3);
   border-top: 1.5px solid #333;
 }
+.footer__top { color: inherit; text-decoration: none; }
+.footer__top:hover { color: var(--paper); text-decoration: underline; }
 
 /* ---------- reveal on scroll ---------- */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
@@ -477,6 +510,9 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
 [data-theme="color"] a.project__link:hover { color: var(--acc); }
 [data-theme="color"] .contact { background: var(--acc-deep); }
 [data-theme="color"] .footer { background: var(--acc-deep); border-top-color: var(--acc); color: var(--grey-2); }
+[data-theme="color"] .scrolltop { border-color: var(--acc); color: var(--acc); }
+[data-theme="color"] .scrolltop:hover { background: var(--acc); color: var(--paper); }
+[data-theme="color"] a:focus-visible, [data-theme="color"] button:focus-visible { outline-color: var(--acc); }
 [data-theme="color"] .contact__office { color: var(--grey-2); }
 
 /* the campus drawing, warmed up */
