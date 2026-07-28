@@ -54,11 +54,14 @@
 
   /* ---------- scroll progress bar ---------- */
   var bar = document.getElementById("progressBar");
+  var ringFg = document.getElementById("ringFg");
+  var RING_C = 131.95;
   function onScroll() {
     var h = document.documentElement;
     var max = h.scrollHeight - h.clientHeight;
     var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
     if (bar) bar.style.width = p + "%";
+    if (ringFg) ringFg.style.strokeDashoffset = (RING_C * (1 - p / 100)).toFixed(2);
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
