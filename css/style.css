@@ -234,11 +234,25 @@ h2 {
 #citysvg pattern line { stroke: var(--ink); }
 .bldg .win { transition: fill .25s ease; }
 #citysvg .bldg:hover .win, #citysvg .bldg:focus-visible .win { fill: var(--ink); }
-.bldg__label { opacity: 0; transition: opacity .25s ease, transform .3s ease; }
-.bldg:hover .bldg__label, .bldg:focus-visible .bldg__label { opacity: 1; }
+/* the signs are always up — hovering just lifts them with the building */
+.bldg__label { transition: transform .3s ease; }
+.bldg:hover .bldg__label, .bldg:focus-visible .bldg__label { transform: translateY(-7px); }
 .labeltext {
   font-family: var(--mono); font-size: 13px; font-weight: 700;
   fill: #fff; letter-spacing: .08em;
+}
+.lbl-rule {
+  fill: #fff; transform: scaleX(0); transform-box: fill-box; transform-origin: left center;
+  transition: transform .3s ease;
+}
+.bldg:hover .lbl-rule, .bldg:focus-visible .lbl-rule { transform: scaleX(1); }
+
+/* a handful of windows keep their lights on, each on its own clock */
+#citysvg .win--lit { fill: var(--ink); animation: lamp 9s steps(1, end) infinite; }
+@keyframes lamp {
+  0%, 86% { opacity: 1; }
+  88%, 93% { opacity: .15; }
+  95%, 100% { opacity: 1; }
 }
 .signtext {
   font-family: var(--mono); font-size: 11px; fill: var(--ink); letter-spacing: .06em;
@@ -258,6 +272,11 @@ h2 {
 @keyframes ride {
   from { transform: translateX(-90px); }
   to   { transform: translateX(1300px); }
+}
+.plane { animation: fly 24s linear infinite; }
+@keyframes fly {
+  from { transform: translate(-70px, 108px); }
+  to   { transform: translate(1270px, 26px); }
 }
 
 /* ---------- about ---------- */
@@ -287,8 +306,9 @@ h2 {
 .about__edu li { border-top: 1.5px solid var(--grey-2); padding: 7px 0; }
 @media (max-width: 760px) {
   .about__grid { grid-template-columns: 1fr; }
-  .about__photo { max-width: 340px; }
-  .about__photo img { height: auto; aspect-ratio: 4 / 5; }
+  .about__photo { width: 100%; max-width: 340px; margin-inline: auto; }
+  .about__photo img { height: auto; aspect-ratio: 4 / 5; object-position: 50% 15%; }
+  .about__photo figcaption { text-align: center; }
   .about__cols { grid-template-columns: 1fr; gap: 18px; margin-top: 22px; }
 }
 
@@ -483,7 +503,7 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .marquee__track, .cloud--a, .cloud--b, .birds, .sunrays, .rickshaw,
-  .hero__down, .blink { animation: none !important; }
+  .plane, .win--lit, .hero__down, .blink { animation: none !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .bldg > * { transition: none; }
 }
@@ -533,5 +553,8 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
 [data-theme="color"] #citysvg .rickshaw path { stroke: var(--red); }
 [data-theme="color"] #citysvg .bldg:hover .win,
 [data-theme="color"] #citysvg .bldg:focus-visible .win { fill: var(--gold); }
-[data-theme="color"] #citysvg .bldg__label rect { fill: var(--acc-deep); }
-[data-theme="color"] .labeltext { fill: var(--paper); }
+[data-theme="color"] #citysvg .bldg__label rect,
+[data-theme="color"] #citysvg .bldg__label polygon { fill: var(--acc-deep); }
+[data-theme="color"] .labeltext, [data-theme="color"] .lbl-rule { fill: var(--paper); }
+[data-theme="color"] #citysvg .win--lit { fill: var(--gold); }
+[data-theme="color"] #citysvg .plane path { stroke: var(--red); }

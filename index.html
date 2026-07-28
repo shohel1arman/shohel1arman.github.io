@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=9" />
+  <link rel="stylesheet" href="css/style.css?v=10" />
   <script>try{if(localStorage.getItem("theme")==="color")document.documentElement.setAttribute("data-theme","color")}catch(e){}</script>
 </head>
 <body>
@@ -96,7 +96,7 @@
       <div class="section__head">
         <p class="eyebrow mono">~/campus</p>
         <h2>Explore the campus</h2>
-        <p class="section__sub">Every building is a part of my work. Hover to look inside, click to visit.</p>
+        <p class="section__sub">Every building is a part of my work — the sign on each one tells you what's inside. Click any building to go there.</p>
       </div>
 
       <div class="campus__scene">
@@ -123,6 +123,9 @@
             <path d="M420 55 q7 -8 14 0 q7 -8 14 0"/>
             <path d="M470 75 q6 -7 12 0 q6 -7 12 0"/>
           </g>
+          <g class="plane">
+            <path d="M0 0 l34 10 l-34 10 l8 -10 z" fill="#fff" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/>
+          </g>
           <circle class="sun" cx="1090" cy="70" r="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
           <g class="sunrays" stroke="#111" stroke-width="2" stroke-linecap="round">
             <line x1="1090" y1="28" x2="1090" y2="16"/><line x1="1090" y1="112" x2="1090" y2="124"/>
@@ -145,14 +148,16 @@
             <line x1="130" y1="185" x2="130" y2="170" stroke="#111" stroke-width="2.5"/>
             <line x1="130" y1="185" x2="141" y2="191" stroke="#111" stroke-width="2.5"/>
             <rect class="win" x="90"  y="230" width="24" height="30" fill="#fff" stroke="#111" stroke-width="2.5"/>
-            <rect class="win" x="146" y="230" width="24" height="30" fill="#fff" stroke="#111" stroke-width="2.5"/>
+            <rect class="win win--lit" x="146" y="230" width="24" height="30" fill="#fff" stroke="#111" stroke-width="2.5" style="animation-delay:-1.2s"/>
             <rect class="win" x="90"  y="285" width="24" height="30" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <rect class="win" x="146" y="285" width="24" height="30" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <rect x="112" y="345" width="36" height="55" fill="#fff" stroke="#111" stroke-width="3"/>
             <circle cx="141" cy="374" r="2.6" fill="#111"/>
             <g class="bldg__label">
+              <polygon points="99,144 111,144 105,152" fill="#111"/>
               <rect x="62" y="118" width="86" height="26" rx="2" fill="#111"/>
               <text x="105" y="136" text-anchor="middle" class="labeltext">ABOUT</text>
+              <rect class="lbl-rule" x="70" y="139" width="70" height="2"/>
             </g>
           </g>
 
@@ -165,7 +170,7 @@
             <path d="M390 205 v-24 l24 -14" stroke="#111" stroke-width="3" fill="none"/>
             <ellipse cx="422" cy="162" rx="14" ry="8" fill="#fff" stroke="#111" stroke-width="3" transform="rotate(-30 422 162)"/>
             <rect class="win" x="272" y="255" width="30" height="36" fill="#fff" stroke="#111" stroke-width="2.5"/>
-            <rect class="win" x="335" y="255" width="30" height="36" fill="#fff" stroke="#111" stroke-width="2.5"/>
+            <rect class="win win--lit" x="335" y="255" width="30" height="36" fill="#fff" stroke="#111" stroke-width="2.5" style="animation-delay:-4.6s"/>
             <rect class="win" x="398" y="255" width="30" height="36" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <path d="M292 372 v-24 q0 -10 10 -10 q10 0 10 10 v24 l8 14 h-36 z" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <line x1="296" y1="358" x2="316" y2="358" stroke="#111" stroke-width="2"/>
@@ -173,8 +178,10 @@
             <line x1="368" y1="330" x2="368" y2="400" stroke="#111" stroke-width="2"/>
             <text x="350" y="320" class="signtext">RESEARCH LAB</text>
             <g class="bldg__label">
+              <polygon points="344,148 356,148 350,156" fill="#111"/>
               <rect x="286" y="122" width="128" height="26" rx="2" fill="#111"/>
               <text x="350" y="140" text-anchor="middle" class="labeltext">RESEARCH</text>
+              <rect class="lbl-rule" x="294" y="143" width="112" height="2"/>
             </g>
           </g>
 
@@ -183,21 +190,23 @@
             <rect x="510" y="170" width="170" height="230" fill="#fff" stroke="#111" stroke-width="3"/>
             <rect x="500" y="150" width="190" height="20" fill="url(#hatch)" stroke="#111" stroke-width="3"/>
             <rect class="win" x="530" y="192" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
-            <rect class="win" x="582" y="192" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
+            <rect class="win win--lit" x="582" y="192" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5" style="animation-delay:-2.9s"/>
             <rect class="win" x="634" y="192" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
-            <rect class="win" x="530" y="240" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
+            <rect class="win win--lit" x="530" y="240" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5" style="animation-delay:-7.1s"/>
             <rect class="win" x="582" y="240" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <rect class="win" x="634" y="240" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <rect class="win" x="530" y="288" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <rect class="win" x="582" y="288" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
-            <rect class="win" x="634" y="288" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
+            <rect class="win win--lit" x="634" y="288" width="26" height="26" fill="#fff" stroke="#111" stroke-width="2.5" style="animation-delay:-5.5s"/>
             <rect x="570" y="345" width="50" height="55" fill="#fff" stroke="#111" stroke-width="3"/>
             <line x1="595" y1="345" x2="595" y2="400" stroke="#111" stroke-width="2"/>
             <line x1="470" y1="400" x2="720" y2="400" stroke="#111" stroke-width="3"/>
             <text x="540" y="142" class="signtext">DEPT. OF SOFTWARE ENGINEERING</text>
             <g class="bldg__label">
+              <polygon points="589,118 601,118 595,126" fill="#111"/>
               <rect x="524" y="92" width="142" height="26" rx="2" fill="#111"/>
               <text x="595" y="110" text-anchor="middle" class="labeltext">EXPERIENCE</text>
+              <rect class="lbl-rule" x="532" y="113" width="126" height="2"/>
             </g>
           </g>
 
@@ -209,13 +218,15 @@
             <rect x="806" y="270" width="12" height="130" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <rect x="862" y="270" width="12" height="130" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <rect x="900" y="270" width="12" height="130" fill="#fff" stroke="#111" stroke-width="2.5"/>
-            <rect class="win" x="826" y="300" width="28" height="42" fill="#fff" stroke="#111" stroke-width="2.5"/>
+            <rect class="win win--lit" x="826" y="300" width="28" height="42" fill="#fff" stroke="#111" stroke-width="2.5" style="animation-delay:-8.2s"/>
             <rect x="826" y="352" width="28" height="48" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <circle cx="848" cy="378" r="2.4" fill="#111"/>
             <text x="784" y="238" class="signtext">LECTURE HALL</text>
             <g class="bldg__label">
+              <polygon points="834,178 846,178 840,186" fill="#111"/>
               <rect x="778" y="152" width="124" height="26" rx="2" fill="#111"/>
               <text x="840" y="170" text-anchor="middle" class="labeltext">TEACHING</text>
+              <rect class="lbl-rule" x="786" y="173" width="108" height="2"/>
             </g>
           </g>
 
@@ -224,7 +235,7 @@
             <rect x="990" y="290" width="150" height="110" fill="#fff" stroke="#111" stroke-width="3"/>
             <polygon points="982,290 1065,255 1148,290" fill="url(#hatch)" stroke="#111" stroke-width="3"/>
             <rect class="win" x="1010" y="315" width="28" height="28" fill="#fff" stroke="#111" stroke-width="2.5"/>
-            <rect class="win" x="1092" y="315" width="28" height="28" fill="#fff" stroke="#111" stroke-width="2.5"/>
+            <rect class="win win--lit" x="1092" y="315" width="28" height="28" fill="#fff" stroke="#111" stroke-width="2.5" style="animation-delay:-3.7s"/>
             <rect x="1048" y="340" width="34" height="60" fill="#fff" stroke="#111" stroke-width="3"/>
             <!-- envelope sign -->
             <rect x="1046" y="300" width="38" height="26" fill="#fff" stroke="#111" stroke-width="2.5"/>
@@ -233,8 +244,10 @@
             <rect x="1160" y="352" width="26" height="20" rx="6" fill="#fff" stroke="#111" stroke-width="2.5"/>
             <line x1="1173" y1="372" x2="1173" y2="400" stroke="#111" stroke-width="2.5"/>
             <g class="bldg__label">
+              <polygon points="1059,238 1071,238 1065,246" fill="#111"/>
               <rect x="1012" y="212" width="106" height="26" rx="2" fill="#111"/>
               <text x="1065" y="230" text-anchor="middle" class="labeltext">CONTACT</text>
+              <rect class="lbl-rule" x="1020" y="233" width="90" height="2"/>
             </g>
           </g>
 
