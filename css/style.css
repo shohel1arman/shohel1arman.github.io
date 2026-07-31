@@ -163,7 +163,7 @@ a { color: inherit; }
   gap: 36px; margin-top: 34px; align-items: end;
 }
 .hero__role { font-size: 1.08rem; max-width: 56ch; }
-.hero__facts { display: flex; gap: 30px; justify-content: flex-end; }
+.hero__facts { display: flex; flex-wrap: wrap; gap: 18px 26px; justify-content: flex-end; }
 .hero__facts div { text-align: right; }
 .hero__facts b { display: block; font-size: 1.7rem; font-weight: 700; font-variant-numeric: tabular-nums; }
 .hero__facts span { font-size: .72rem; color: var(--grey-3); }
@@ -194,6 +194,7 @@ a { color: inherit; }
 @keyframes scroll { to { transform: translateX(-50%); } }
 
 /* ---------- generic sections ---------- */
+.section, .campus, .contact { scroll-margin-top: 68px; }
 .section {
   max-width: var(--maxw); margin: 0 auto;
   padding: clamp(40px, 5.5vw, 68px) var(--pad);
@@ -234,25 +235,11 @@ h2 {
 #citysvg pattern line { stroke: var(--ink); }
 .bldg .win { transition: fill .25s ease; }
 #citysvg .bldg:hover .win, #citysvg .bldg:focus-visible .win { fill: var(--ink); }
-/* the signs are always up — hovering just lifts them with the building */
-.bldg__label { transition: transform .3s ease; }
-.bldg:hover .bldg__label, .bldg:focus-visible .bldg__label { transform: translateY(-7px); }
+.bldg__label { opacity: 0; transition: opacity .25s ease, transform .3s ease; }
+.bldg:hover .bldg__label, .bldg:focus-visible .bldg__label { opacity: 1; }
 .labeltext {
   font-family: var(--mono); font-size: 13px; font-weight: 700;
   fill: #fff; letter-spacing: .08em;
-}
-.lbl-rule {
-  fill: #fff; transform: scaleX(0); transform-box: fill-box; transform-origin: left center;
-  transition: transform .3s ease;
-}
-.bldg:hover .lbl-rule, .bldg:focus-visible .lbl-rule { transform: scaleX(1); }
-
-/* a handful of windows keep their lights on, each on its own clock */
-#citysvg .win--lit { fill: var(--ink); animation: lamp 9s steps(1, end) infinite; }
-@keyframes lamp {
-  0%, 86% { opacity: 1; }
-  88%, 93% { opacity: .15; }
-  95%, 100% { opacity: 1; }
 }
 .signtext {
   font-family: var(--mono); font-size: 11px; fill: var(--ink); letter-spacing: .06em;
@@ -272,11 +259,6 @@ h2 {
 @keyframes ride {
   from { transform: translateX(-90px); }
   to   { transform: translateX(1300px); }
-}
-.plane { animation: fly 24s linear infinite; }
-@keyframes fly {
-  from { transform: translate(-70px, 108px); }
-  to   { transform: translate(1270px, 26px); }
 }
 
 /* ---------- about ---------- */
@@ -306,9 +288,8 @@ h2 {
 .about__edu li { border-top: 1.5px solid var(--grey-2); padding: 7px 0; }
 @media (max-width: 760px) {
   .about__grid { grid-template-columns: 1fr; }
-  .about__photo { width: 100%; max-width: 340px; margin-inline: auto; }
-  .about__photo img { height: auto; aspect-ratio: 4 / 5; object-position: 50% 15%; }
-  .about__photo figcaption { text-align: center; }
+  .about__photo { max-width: 340px; }
+  .about__photo img { height: auto; aspect-ratio: 4 / 5; }
   .about__cols { grid-template-columns: 1fr; gap: 18px; margin-top: 22px; }
 }
 
@@ -443,6 +424,35 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
   font-size: clamp(.9rem, 2.4vw, 1.15rem);
   padding: 11px 22px; border-width: 1.5px; font-weight: 400;
 }
+.contact__actions {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 12px; margin-top: 22px;
+}
+.contact__actions a {
+  display: inline-flex; align-items: center; gap: 9px;
+  max-width: 560px; text-align: left;
+  border: 1.5px dashed var(--grey-3); padding: 10px 18px;
+  color: var(--grey-2); text-decoration: none; font-size: .78rem;
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.contact__actions a svg { width: 16px; height: 16px; flex: none; }
+.contact__actions a:hover, .contact__actions a:focus-visible {
+  border-color: var(--paper); color: var(--paper); background: rgba(255,255,255,.07);
+}
+
+.contact__book {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 18px;
+  font-family: var(--mono); font-weight: 700; font-size: .92rem;
+  background: var(--paper); color: var(--ink);
+  border: 2px solid var(--paper); padding: 13px 26px;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease;
+}
+.contact__book svg { width: 18px; height: 18px; flex: none; }
+.contact__book:hover, .contact__book:focus-visible { background: transparent; color: var(--paper); }
+.contact__note { margin-top: 14px; font-size: .72rem; color: var(--grey-3); }
+
 .contact__links {
   display: flex; flex-wrap: wrap; justify-content: center;
   gap: 12px; margin-top: 30px;
@@ -503,7 +513,7 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .marquee__track, .cloud--a, .cloud--b, .birds, .sunrays, .rickshaw,
-  .plane, .win--lit, .hero__down, .blink { animation: none !important; }
+  .hero__down, .blink { animation: none !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .bldg > * { transition: none; }
 }
@@ -540,6 +550,8 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
 [data-theme="color"] .project h3 { color: var(--acc-deep); }
 [data-theme="color"] a.project__link:hover { color: var(--acc); }
 [data-theme="color"] .contact { background: var(--acc-deep); }
+[data-theme="color"] .contact__book { color: var(--acc-deep); }
+[data-theme="color"] .contact__book:hover, [data-theme="color"] .contact__book:focus-visible { color: var(--paper); }
 [data-theme="color"] .footer { background: var(--acc-deep); border-top-color: var(--acc); color: var(--grey-2); }
 [data-theme="color"] .scrolltop { color: var(--acc); }
 [data-theme="color"] .scrolltop:hover { background: var(--acc); color: var(--paper); }
@@ -553,8 +565,5 @@ a.project__link:hover { color: var(--ink); text-decoration: underline; }
 [data-theme="color"] #citysvg .rickshaw path { stroke: var(--red); }
 [data-theme="color"] #citysvg .bldg:hover .win,
 [data-theme="color"] #citysvg .bldg:focus-visible .win { fill: var(--gold); }
-[data-theme="color"] #citysvg .bldg__label rect,
-[data-theme="color"] #citysvg .bldg__label polygon { fill: var(--acc-deep); }
-[data-theme="color"] .labeltext, [data-theme="color"] .lbl-rule { fill: var(--paper); }
-[data-theme="color"] #citysvg .win--lit { fill: var(--gold); }
-[data-theme="color"] #citysvg .plane path { stroke: var(--red); }
+[data-theme="color"] #citysvg .bldg__label rect { fill: var(--acc-deep); }
+[data-theme="color"] .labeltext { fill: var(--paper); }
